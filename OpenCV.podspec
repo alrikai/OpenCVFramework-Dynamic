@@ -14,16 +14,15 @@ Pod::Spec.new do |spec|
   }
 
   spec.prepare_command = <<-CMD
-      if [ -d "opencv-4.3" ]; then
-          echo "subtree opencv-4.3 exists." 
-      else
-          git remote add -f opencv https://github.com/opencv/opencv.git
-          git subtree add --prefix opencv-4.3 opencv 4.3.0 --squash
-      fi
-      git fetch opencv 4.3.0
-      git subtree pull --prefix opencv-4.3 opencv 4.3.0 --squash
-      python2.7 opencv-4.3/platforms/ios/build_framework.py opencv-ios-dynamic --dynamic
+      uuid=$(uuidgen)
+      git remote add -f opencv-${uuid} https://github.com/opencv/opencv.git
+      git subtree add --prefix opencv-4.3-${uuid} opencv-${uuid} 4.3.0 --squash
+      git fetch opencv-${uuid} 4.3.0
+      git subtree pull --prefix opencv-4.3-${uuid} opencv-${uuid} 4.3.0 --squash
+      python2.7 opencv-4.3-${uuid}/platforms/ios/build_framework.py opencv-ios-dynamic --dynamic
       cp -a opencv-ios-dynamic/opencv2.framework ./opencv2.framework
+      rm -rf opencv-4.3-${uuid}
+      git remote rm opencv-${uuid}
   CMD
   
   spec.source_files = "opencv2.framework/Headers/**/*{.h,.hpp}"
