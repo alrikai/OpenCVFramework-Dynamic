@@ -5,7 +5,7 @@ Pod::Spec.new do |spec|
   spec.description  = "From https://github.com/opencv/opencv"
   spec.homepage     = "https://github.com/alrikai/OpenCVFramework-Dynamic.git"
   spec.license      = { :type => '3-clause BSD', :file => 'opencv-4.3/LICENSE' } 
-  spec.author       = { "https://opencv.org/" }
+  spec.author       = "https://opencv.org/" 
   spec.platform     = :ios
   spec.ios.deployment_target = "11.1"
   spec.source       = { 
@@ -14,8 +14,9 @@ Pod::Spec.new do |spec|
   }
 
   spec.prepare_command = <<-CMD
-      git fetch opencv spec.version.to_s
-      git subtree pull --prefix opencv-4.3 opencv spec.version.to_s --squash
+      git reset --hard
+      git fetch opencv 4.3.0
+      git subtree pull --prefix opencv-4.3 opencv 4.3.0 --squash
       python2.7 opencv-4.3/platforms/ios/build_framework.py opencv-ios-dynamic --dynamic
       cp -a opencv-ios-dynamic/opencv2.framework ./opencv2.framework
   CMD
