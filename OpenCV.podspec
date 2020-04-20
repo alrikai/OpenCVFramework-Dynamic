@@ -27,16 +27,14 @@ Pod::Spec.new do |spec|
   #spec.public_header_files = "mobile/ios/HVImageCheck/HVImageCheck/**/*.h"
   #spec.preserve_paths = "mobile/ios/HVImageCheck/HVImageCheck/Imagecheck/Imagecheck.modulemap", "mobile/ios/HVImageCheck/Dependencies/*"
 	spec.ios.frameworks = [
-			"Accelerate",
-			"AssetsLibrary",
-			"AVFoundation",
-			"CoreGraphics",
-			"CoreImage",
-			"CoreMedia",
-			"CoreVideo",
-			"Foundation",
-			"QuartzCore",
-			"UIKit"
+    "AssetsLibrary",
+    "AVFoundation",
+    "CoreGraphics",
+    "CoreMedia",
+    "CoreVideo",
+    "Foundation",
+    "QuartzCore",
+    "UIKit"
 	]
 
   spec.libraries = "c++"
