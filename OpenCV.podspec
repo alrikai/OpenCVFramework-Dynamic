@@ -17,8 +17,9 @@ Pod::Spec.new do |spec|
       uuid=$(uuidgen)
       git remote add -f opencv-${uuid} https://github.com/opencv/opencv.git
       git subtree add --prefix opencv-4.3-${uuid} opencv-${uuid} 4.3.0 --squash
-      git fetch opencv-${uuid} 4.3.0
-      git subtree pull --prefix opencv-4.3-${uuid} opencv-${uuid} 4.3.0 --squash
+      #git reset
+      #git fetch opencv-${uuid} 4.3.0
+      #git subtree pull --prefix opencv-4.3-${uuid} opencv-${uuid} 4.3.0 --squash
       python2.7 opencv-4.3-${uuid}/platforms/ios/build_framework.py opencv-ios-dynamic --dynamic
       cp -a opencv-ios-dynamic/opencv2.framework ./opencv2.framework
       rm -rf opencv-4.3-${uuid}
