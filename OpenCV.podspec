@@ -19,6 +19,7 @@ Pod::Spec.new do |spec|
       remote_name="opencv-${uuid}"
       prefix_dir="opencv-${target_tag}-${uuid}"
       git remote add -f $remote_name https://github.com/opencv/opencv.git
+      git reset --hard
       git subtree add --prefix $prefix_dir $remote_name ${target_tag} --squash
       python2.7 $prefix_dir/platforms/ios/build_framework.py opencv-ios-dynamic --dynamic
       cp -a opencv-ios-dynamic/opencv2.framework ./opencv2.framework
