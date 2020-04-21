@@ -15,15 +15,15 @@ Pod::Spec.new do |spec|
 
   spec.prepare_command = <<-CMD
       uuid=$(uuidgen)
-      git remote add -f opencv-${uuid} https://github.com/opencv/opencv.git
-      git subtree add --prefix opencv-4.3-${uuid} opencv-${uuid} 4.3.0 --squash
-      #git reset
-      #git fetch opencv-${uuid} 4.3.0
-      #git subtree pull --prefix opencv-4.3-${uuid} opencv-${uuid} 4.3.0 --squash
-      python2.7 opencv-4.3-${uuid}/platforms/ios/build_framework.py opencv-ios-dynamic --dynamic
+      target_tag="4.3.0"
+      remote_name="opencv-${uuid}"
+      prefix_dir="opencv-${target_tag}-${uuid}"
+      git remote add -f $remote_name https://github.com/opencv/opencv.git
+      git subtree add --prefix $prefix_dir $remote_name ${target_tag} --squash
+      python2.7 $prefix_dir/platforms/ios/build_framework.py opencv-ios-dynamic --dynamic
       cp -a opencv-ios-dynamic/opencv2.framework ./opencv2.framework
-      rm -rf opencv-4.3-${uuid}
-      git remote rm opencv-${uuid}
+      rm -rf $prefix_dir
+      git remote rm $remote_name
   CMD
   
   spec.source_files = "opencv2.framework/Headers/**/*{.h,.hpp}"
