@@ -31,8 +31,6 @@ Pod::Spec.new do |spec|
   spec.preserve_paths = "opencv2.framework"
   spec.vendored_frameworks = "opencv2.framework"
   spec.requires_arc = false
-  #spec.public_header_files = "mobile/ios/HVImageCheck/HVImageCheck/**/*.h"
-  #spec.preserve_paths = "mobile/ios/HVImageCheck/HVImageCheck/Imagecheck/Imagecheck.modulemap", "mobile/ios/HVImageCheck/Dependencies/*"
 	spec.ios.frameworks = [
     "AssetsLibrary",
     "AVFoundation",
